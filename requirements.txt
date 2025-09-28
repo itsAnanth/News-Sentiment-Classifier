@@ -1,3 +1,4 @@
 pyspark
 streamlit
 pandas
+plotly
