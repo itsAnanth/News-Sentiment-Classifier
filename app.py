@@ -47,7 +47,7 @@ SPARK_UI_PORT = os.getenv("SPARK_UI_PORT", "4040")
 
 # sidebar
 st.sidebar.header("Controls")
-api_key = st.sidebar.text_input("NewsAPI Key", value=NEWSAPI_KEY_ENV, type="password", help="Read from env NEWSAPI_KEY if set.")
+api_key = st.sidebar.text_input("NewsAPI API Key", value=NEWSAPI_KEY_ENV, type="password", help="Read from env NEWSAPI_KEY if set.")
 
 query = st.sidebar.text_input("Topic / Query", value="finance", help="Any NewsAPI search query.")
 
@@ -160,9 +160,10 @@ def predict_sentiment(headlines: pd.DataFrame, spark: SparkSession, model: Pipel
     pdf["sentiment"] = np.where(pdf["pos_prob"] >= pdf["neg_prob"], "Positive", "Negative")
     return pdf
 
+
 # page header
 st.title("🗞️ Real‑Time News Sentiment Dashboard")
-st.caption("Powered by PySpark ML • Live headlines from NewsAPI • Fast, clean, and responsive UI")
+st.caption("Powered by PySpark ML • Live headlines obatined from NewsAPI •")
 
 
 # load spark and model, then cache it if its the first load
@@ -289,9 +290,8 @@ with st.expander("ℹ️ Help & Notes"):
     st.markdown(
         """
         - **API key**: Provide a NewsAPI key in the sidebar or via the `NEWSAPI_KEY` env var.
-        - **Model**: The app expects a PySpark `PipelineModel` at `MODEL_DIR` env path (default `/app/model`).
-        - **Probabilities**: This UI assumes the classifier's probability vector is `[neg, pos]`. If your training used a different label order, adjust the UDFs.
+        - **Model**: The app uses a custom trained sentiment classifier model :).
         - **Performance**: Fetches are cached for 10 minutes. Spark session & model are cached for reuse.
-        - **Docker**: Run with: `docker run -p 8501:8501 -e NEWSAPI_KEY=... -v $PWD/model:/app/model yourimage`
         """
     )
+    
