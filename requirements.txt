@@ -1,4 +1,7 @@
-pyspark
-streamlit
+pyspark==3.5.1
+streamlit==1.39.0
 pandas
+pyarrow
+numpy
 plotly
+requests
