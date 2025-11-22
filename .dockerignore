@@ -1,4 +1,6 @@
 __pycache__/
+notebooks/
+data/
 *.pyc
 *.pyo
 *.pyd
@@ -13,4 +15,10 @@ dist/
 .DS_Store
 *.sqlite3
 *.log
-news_sentiment_model/metadata/part-00000
+
+
+# allow the model to pass through:
+!news_sentiment_model/**
+!news_sentiment_model/data/**
+!news_sentiment_model/metadata/**
+!news_sentiment_model/stages/**

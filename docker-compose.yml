@@ -2,7 +2,7 @@ version: '3.8'
 services:
   app:
     build: .
-    container_name: news-sentiment-app
+    container_name: news-sentiment-classifier-app
     # Map Streamlit default port 8501 for the dashboard
     ports:
       - "8501:8501"
@@ -10,10 +10,6 @@ services:
       - PYTHONUNBUFFERED=1
       - MODEL_DIR=/app/news_sentiment_model
       - name=news-sentiment
-    # For development, mount the current directory so changes are picked up.
-    # Remove the volume in production to use the image contents instead.
-    volumes:
-      - ./:/app
     command: ["streamlit", "run", "app.py", "--server.port", "8501", "--server.address", "0.0.0.0"]
 
     develop:
